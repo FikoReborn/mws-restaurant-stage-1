@@ -54,11 +54,15 @@ nav {
   height: 80px;
   background-color: #252831;
   text-align:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 nav h1 {
   margin: auto;
 }
 nav h1 a {
+  text-align: center;
   color: #fff;
   font-size: 14pt;
   font-weight: 200;
@@ -272,4 +276,36 @@ nav h1 a {
 }
 #restaurant-hours td {
   color: #666;
+}
+
+@media screen and (max-width: 449px) {
+  nav h1 a {
+    font-size: 10pt;
+    letter-spacing: 8px;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  nav h1 a {
+    font-size: 18pt;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  nav h1 a {
+    font-size: 20pt;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+  nav h1 a {
+    font-size: 22pt;
+  }
+
+}
+
+@media screen and (min-width: 1440px) {
+
+  
 }
