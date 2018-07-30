@@ -1,4 +1,4 @@
-var staticCacheName = 'restaurant-reviews-v3';
+var staticCacheName = 'restaurant-reviews-v8';
 
 self.addEventListener('install', function (event) {
     event.waitUntil(
@@ -35,6 +35,7 @@ self.addEventListener('activate', function (event) {
                     return cacheName.startsWith('restaurant-') &&
                         cacheName != staticCacheName;
                 }).map(function (cacheName) {
+                    console.log('deleting');
                     return caches.delete(cacheName);
                 })
             );

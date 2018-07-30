@@ -239,9 +239,12 @@ nav h1 a {
 
 /* ====================== Restaurant Details ====================== */
 
-.inside #restaurant-container, .inside #reviews-container {
+#restaurant-container, #reviews-container {
   width: 100%;
   margin: 0;
+  border-bottom: 1px solid #d9d9d9;
+  border-top: 1px solid #fff;
+  padding: 10px 40px 30px;
 }
 
 #restaurant-name {
@@ -276,13 +279,6 @@ nav h1 a {
   text-align: center;
   text-transform: uppercase;
   width: 90%;
-}
-
-#restaurant-container, #reviews-container {
-  border-bottom: 1px solid #d9d9d9;
-  border-top: 1px solid #fff;
-  padding: 10px 40px 30px;
-  width: 50%;
 }
 
 #reviews-container {
@@ -330,6 +326,7 @@ nav h1 a {
 /* Larger mobile sizes */
 
 @media screen and (min-width: 450px) {
+  /* Change font-size of main heading and breadcrumb */
   nav h1 a {
     font-size: 17pt;
     letter-spacing: 10px;
@@ -342,7 +339,7 @@ nav h1 a {
 /* Laptop Sizes and Higher */
 
 @media screen and (min-width: 768px) {
-  /* Header */
+  /* Change header font-sizes and make header fixed */
   nav h1 a {
     font-size: 20pt;
   }
@@ -355,20 +352,18 @@ nav h1 a {
   #breadcrumb {
     width: 50%;
   }
-  /* Filter Options */
+  /* Make filter-options inline due to increased screen width */
   .filter-options h2 {
     display: inline;
   }
-  /* Restaurant/reviews container settings */
+  /* Make restaurant info/reviews and map side-by-side */
   #restaurant-container, #reviews-container {
     width: 50%;
   }
   #restaurant-container {
     padding-top: 140px;
   }
-  /* Map container */
   .inside #map-container {
-    background: blue none repeat scroll 0 0;
     height: 87%;
     position: fixed;
     right: 0;
@@ -380,7 +375,7 @@ nav h1 a {
     height: 100%;
     width: 100%;
   }
-  /* Footer */
+  /* Footer to 50% */
   .inside #footer {
     bottom: 0;
     position: absolute;
@@ -391,6 +386,7 @@ nav h1 a {
 /* Desktop Sizes */
 
 @media screen and (min-width: 1024px) {
+  /* Change main title font size for desktop */
   nav h1 a {
     font-size: 22pt;
   }
