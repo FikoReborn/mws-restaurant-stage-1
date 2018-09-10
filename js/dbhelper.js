@@ -9,6 +9,9 @@ class DBHelper {
    */
   static get DATABASE_URL() {
     const port = 8000 // Change this to your server port
+    if (location.hostname === 'fikoreborn.github.io') {
+      return 'https://fikoreborn.github.io/mws-restaurant-stage-1/data/restaurants.json'
+    }
     return `http://localhost:${port}/data/restaurants.json`;
   }
 
