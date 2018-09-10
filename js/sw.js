@@ -1,14 +1,13 @@
-var staticCacheName = 'restaurant-reviews-v10';
+var staticCacheName = 'restaurant-reviews-v8';
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
     event.waitUntil(
-        caches.open(staticCacheName).then(function(cache) {
+        caches.open(staticCacheName).then(function (cache) {
             return cache.addAll([
                 '/',
                 '/index.html',
                 '/restaurant.html',
                 '/css/styles.css',
-                '/js/api-key.js',
                 '/js/main.js',
                 '/js/restaurant_info.js',
                 '/js/dbhelper.js',
@@ -28,36 +27,23 @@ self.addEventListener('install', function(event) {
     );
 });
 
-// self.addEventListener('activate', function(event) {
-//     var cacheWhitelist = [cacheName];
-  
-//     event.waitUntil(
-//       caches.keys().then(function(keyList) {
-//         return Promise.all(keyList.map(function(key) {
-//           if (cacheWhitelist.indexOf(key) === -1) {
-//             return caches.delete(key);
-//           }
-//         }));
-//       })
-//     );
-//   });
-
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', function (event) {
     event.waitUntil(
-      caches.keys().then(function(cacheNames) {
-        return Promise.all(
-          cacheNames.filter(function(cacheName) {
-            return cacheName.startsWith('restaurant-') &&
-                   cacheName != staticCacheName;
-          }).map(function(cacheName) {
-            return caches.delete(cacheName);
-          })
-        );
-      })
+        caches.keys().then(function (cacheNames) {
+            return Promise.all(
+                cacheNames.filter(function (cacheName) {
+                    return cacheName.startsWith('restaurant-') &&
+                        cacheName != staticCacheName;
+                }).map(function (cacheName) {
+                    console.log('deleting');
+                    return caches.delete(cacheName);
+                })
+            );
+        })
     );
-  });
+});
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
     var requestUrl = new URL(event.request.url);
 
     if (requestUrl.origin === location.origin) {
@@ -65,23 +51,15 @@ self.addEventListener('fetch', function(event) {
             event.respondWith(caches.match('/'));
             return;
         }
+
+        if (requestUrl.pathname === '/restaurant.html') {
+            event.respondWith(caches.match('/restaurant.html'));
+            return;
+        }
     }
     event.respondWith(
-        caches.match(event.request).then(function(response) {
+        caches.match(event.request).then(function (response) {
             return response || fetch(event.request);
         })
     );
 });
-
-// self.addEventListener('fetch', function(event) {
-//     event.respondWith(
-//       caches.match(event.request).then(function(resp) {
-//         return resp || fetch(event.request).then(function(response) {
-//           return caches.open(cacheName).then(function(cache) {
-//             cache.put(event.request, response.clone());
-//             return response;
-//           });  
-//         });
-//       })
-//     );
-//   });
