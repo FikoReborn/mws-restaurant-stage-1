@@ -3,16 +3,25 @@
  */
 class DBHelper {
 
+  static setPort() {
+    return 8000; // Change this to your server port
+  }
+
+  static getBaseUrl() {
+    const port = DBHelper.setPort();
+    if (location.hostname === 'fikoreborn.github.io') {
+      return `https://${location.hostname}/mws-restaurant-stage-1`;
+    } else {
+      return `http://localhost:${port}`
+    }
+  }
+
   /**
    * Database URL.
    * Change this to restaurants.json file location on your server.
    */
   static get DATABASE_URL() {
-    const port = 8000 // Change this to your server port
-    if (location.hostname === 'fikoreborn.github.io') {
-      return 'https://fikoreborn.github.io/mws-restaurant-stage-1/data/restaurants.json'
-    }
-    return `http://localhost:${port}/data/restaurants.json`;
+    return `${DBHelper.getBaseUrl()}/data/restaurants.json`;
   }
 
   /**
@@ -146,14 +155,14 @@ class DBHelper {
    * Restaurant page URL.
    */
   static urlForRestaurant(restaurant) {
-    return (`./restaurant.html?id=${restaurant.id}`);
+    return (`${DBHelper.getBaseUrl()}/restaurant.html?id=${restaurant.id}`);
   }
 
   /**
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`../img/${restaurant.photograph}`);
+    return (`${DBHelper.getBaseUrl()}/img/${restaurant.photograph}`);
   }
 
   /**
